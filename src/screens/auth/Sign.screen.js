@@ -14,7 +14,8 @@ import LinearGradient from "react-native-linear-gradient";
 import Button from "../../components/Button";
 import Container from "../../components/Container";
 import {connect, useDispatch, useSelector} from "react-redux";
-import {onChangeEmail} from "../../redux-state/actions/user.actions";
+// import {onChangeEmail} from "../../redux-core/actions/user.actions";
+import { changeEmail } from "../../redux/user/user.slice";
 
 function SignIn() {
   const {token, email} = useSelector(({user}) => user);
@@ -23,7 +24,7 @@ function SignIn() {
   const navigation = useNavigation();
 
   const onSubmit = data => {
-    dispatch(onChangeEmail(data.email));
+    dispatch(changeEmail(data.email));
     // navigation.navigate(AppRoutes.MAIN_DRAWER);
   };
   console.log(email);

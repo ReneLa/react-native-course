@@ -5,8 +5,13 @@ const userState = createSlice({
   name: "user",
   initialState: {
     token: "",
+    email: "renela79@gmail.com",
   },
-  reducers: {},
+  reducers: {
+    changeEmail: (state, action) => {
+      state.email = action.payload;
+    },
+  },
 });
 
 export const userApiSlice = apiSlice.injectEndpoints({
@@ -27,4 +32,5 @@ export const userApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
+export const {changeEmail} = userState.actions;
 export default userState.reducer;
