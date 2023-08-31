@@ -11,11 +11,11 @@ import {
   View,
 } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
+import {useDispatch, useSelector} from "react-redux";
 import Button from "../../components/Button";
 import Container from "../../components/Container";
-import {connect, useDispatch, useSelector} from "react-redux";
-// import {onChangeEmail} from "../../redux-core/actions/user.actions";
-import { changeEmail } from "../../redux/user/user.slice";
+import {fetchUser} from "../../redux-core/actions/user.actions";
+import {AppRoutes} from "../../navigation/app.routes";
 
 function SignIn() {
   const {token, email} = useSelector(({user}) => user);
@@ -24,10 +24,11 @@ function SignIn() {
   const navigation = useNavigation();
 
   const onSubmit = data => {
-    dispatch(changeEmail(data.email));
-    // navigation.navigate(AppRoutes.MAIN_DRAWER);
+    // dispatch(fetchUser());
+
+    navigation.navigate(AppRoutes.MAIN_DRAWER);
   };
-  console.log(email);
+
   return (
     <Container flex={1}>
       <KeyboardAvoidingView
@@ -68,7 +69,6 @@ function SignIn() {
                 />
               )}
               name="email"
-              rules={{required: true}}
             />
             <Controller
               control={control}
@@ -84,7 +84,6 @@ function SignIn() {
                 />
               )}
               name="password"
-              rules={{required: true}}
             />
           </Container>
           <Container middle center>
@@ -92,23 +91,13 @@ function SignIn() {
               bgColor="tomato"
               onPress={handleSubmit(onSubmit)}
               className="rounded-md pt-4 pb-4 w-1/2 mb-4">
-              <Text>Save Email</Text>
+              <Text>Login</Text>
             </Button>
           </Container>
         </Container>
-        <ChildComponent email={email} />
       </KeyboardAvoidingView>
     </Container>
   );
 }
-
-const ChildComponent = ({}) => {
-  const {token, email} = useSelector(({user}) => user);
-  return (
-    <View className="w-full h-12 items-center justify-center bg-blue-500">
-      <Text>{email}</Text>
-    </View>
-  );
-};
 
 export default SignIn;
