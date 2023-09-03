@@ -3,7 +3,7 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://randomuser.me/api",
+    baseUrl: "https://api.themoviedb.org/3",
     prepareHeaders: (headers, {getState}) => {
       const {token} = getState().user;
       if (token) {

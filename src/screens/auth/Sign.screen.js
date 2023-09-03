@@ -1,5 +1,5 @@
 import {useNavigation} from "@react-navigation/native";
-import React, {useEffect} from "react";
+import React from "react";
 import {Controller, useForm} from "react-hook-form";
 import {
   ActivityIndicator,
@@ -9,26 +9,17 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  View,
 } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import Button from "../../components/Button";
 import Container from "../../components/Container";
-import {fetchUser} from "../../redux-core/actions/user.actions";
 import {AppRoutes} from "../../navigation/app.routes";
-import {useGetUsersQuery} from "../../redux/user/user.slice";
 
 function SignIn() {
-  // const {isFetching, user, error} = useSelector(({user}) => user);
-  const {data, isLoading, isFetching, isError, error, isSuccess} =
-    useGetUsersQuery();
-    
   const dispatch = useDispatch();
   const {handleSubmit, control} = useForm();
   const navigation = useNavigation();
-
-  console.log("loading", isLoading, "success", isSuccess, "data", data);
 
   return (
     <Container flex={1}>
@@ -89,15 +80,11 @@ function SignIn() {
           </Container>
           <Container middle center>
             <Button
-              disabled={isFetching}
               bgColor="tomato"
               // onPress={handleSubmit(onSubmit)}
+              onPress={() => navigation.navigate(AppRoutes.MAIN_DRAWER)}
               className="rounded-md pt-4 pb-4 w-1/2 mb-4">
-              {isFetching ? (
-                <ActivityIndicator size="small" color="white" />
-              ) : (
-                <Text>Login</Text>
-              )}
+              <Text>Login</Text>
             </Button>
           </Container>
         </Container>
