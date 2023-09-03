@@ -4,6 +4,13 @@ export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://randomuser.me/api",
+    prepareHeaders: (headers, {getState}) => {
+      const {token} = getState().user;
+      if (token) {
+        headers.set("authorization", `Bearer ${token}`);
+      }
+      return headers;
+    },
   }),
   tagTypes: [],
   endpoints: builder => ({}),

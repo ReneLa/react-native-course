@@ -4,7 +4,8 @@ import {createSlice} from "@reduxjs/toolkit";
 const userState = createSlice({
   name: "user",
   initialState: {
-    token: "",
+    token:
+      "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYWZmOWVjNTk2NWYzMTUyOWMxZDY5YmVmZTBhZTBiMCIsInN1YiI6IjYwYzRhYWJiMTg4NjRiMDAyOTcxYTk2ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0-IqaA_mU6VELU50b4IWv84RKGJWWAKy_3DRCD3gKkI",
     email: "renela79@gmail.com",
   },
   reducers: {
