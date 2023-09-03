@@ -28,17 +28,17 @@ export const fetchUser = () => {
   return (dispatch, getState) => {
     dispatch(fetchingUser());
 
-    fetch("https://randomuser.me/api/?results=2")
+    fetch("https://randomuser.me/api/?results=1")
       .then(results => {
         return results.json();
       })
       .then(data => {
-        dispatch(fetchSuccess(data.results));
-        // console.log(data);
+        dispatch(fetchSuccess(data.results[0]));
+        console.log(data);
         // Access your data here
       })
       .catch(error => {
-        dispatch(fetchSuccess(error));
+        dispatch(fetchFail(error));
         // console.log(error);
       });
   };

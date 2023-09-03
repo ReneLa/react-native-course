@@ -18,19 +18,20 @@ export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
     loginUser: builder.mutation({
       query: () => ({
-        url: "",
+        url: "/login",
         method: "POST",
         body: {},
       }),
     }),
-    getUser: builder.query({
+    getUsers: builder.query({
       query: () => ({
-        url: "",
+        url: "/?results=3",
         method: "GET",
       }),
     }),
   }),
 });
 
+export const {useGetUsersQuery, useLoginUserMutation} = userApiSlice;
 export const {changeEmail} = userState.actions;
 export default userState.reducer;
